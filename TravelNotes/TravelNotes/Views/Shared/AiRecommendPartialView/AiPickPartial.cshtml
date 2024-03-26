@@ -1,0 +1,88 @@
+﻿@using TravelNotes.Models;
+@model Array
+@{
+    int count = 0;
+}
+
+<h3>讓我們開始吧!</h3>
+
+<h3>如果您可以改變天氣，你現在最想要甚麼天氣?</h3>
+<div id="page1" class="page">
+    @foreach (var item in Model)
+    {
+        if (item is List<TagList>)
+        {
+            var tagLists = item as List<TagList>;
+            <div id="weather" class="page">
+                @foreach (var tagList in tagLists)
+                {
+                    @if (tagList.TagClass == "W")
+                    {
+                        <button type="button" class="btn btn-outline-info weather-btn">
+                            @Html.DisplayFor(modelItem => tagList.TagName)
+                        </button>
+                    }
+                }
+            </div>
+
+        }
+    }
+</div>
+
+<br />
+
+<h3>您現在最想從事的3個活動是什麼?</h3>
+<div id="page2" class="page">
+    @foreach (var item in Model)
+    {
+        if (item is List<TagList>)
+        {
+            var tagLists = item as List<TagList>;
+            <div id="activities" class="page">
+                @foreach (var tagList in tagLists)
+                {
+                    @if (tagList.TagClass == "I")
+                    {
+                        <button type="button" class="btn btn-outline-success interest-btn">
+                            @Html.DisplayFor(modelItem => tagList.TagName)
+                        </button>
+                    }
+                }
+            </div>
+        }
+    }
+</div>
+
+<br />
+
+<h3>最後，您最想去的國家是哪一國?</h3>
+<div id="page3" class="page">
+    @foreach (var item in Model)
+    {
+        if (item is List<TagList>)
+        {
+            var tagLists = item as List<TagList>;
+            <div id="countries" class="page">
+                @foreach (var tagList in tagLists)
+                {
+                    @if (tagList.TagClass == "C")
+                    {
+                        <button type="button" class="btn btn-outline-warning country-btn">
+                            @Html.DisplayFor(modelItem => tagList.TagName)
+                        </button>
+                    }
+                }
+            </div>
+
+        }
+    }
+</div>
+
+
+<button id="submit" class="btn btn-success">送出</button>
+<button id="reset" class="btn btn-success">重置</button>
+
+<div id="card-container">
+    <h4></h4>
+</div>
+
